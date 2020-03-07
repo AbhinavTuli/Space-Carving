@@ -48,19 +48,6 @@ for i in range(img1.size[0]):
                     ma[i,j,k]=0
 
 
-# for i in range(100):
-#     for j in range(100):
-#         print(ma2[i,j])
-
-#plotting the merged projections using matplot lib
-
-# fig = plt.figure()
-# ax = fig.gca(projection='3d')
-
-# ax.voxels(ma, edgecolor="k")
-
-# plt.show()
-
 #creating an empty list and populating it with points from numpy array
 l=[]
 
@@ -75,11 +62,18 @@ j=np.asarray(l)
 # print(j.shape)
 
 #plotting np array using open3d
-points = np.random.rand(10000, 3)
 point_cloud = open3d.geometry.PointCloud()
 point_cloud.points = open3d.utility.Vector3dVector(j)
 open3d.io.write_point_cloud("out.ply", point_cloud)
 open3d.visualization.draw_geometries([point_cloud])
 
 
+#plotting the merged projections using matplot lib
+
+# fig = plt.figure()
+# ax = fig.gca(projection='3d')
+
+# ax.voxels(ma, edgecolor="k")
+
+# plt.show()
         
