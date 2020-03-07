@@ -78,6 +78,7 @@ j=np.asarray(l)
 points = np.random.rand(10000, 3)
 point_cloud = open3d.geometry.PointCloud()
 point_cloud.points = open3d.utility.Vector3dVector(j)
+open3d.io.write_point_cloud("out.ply", point_cloud)
 open3d.visualization.draw_geometries([point_cloud])
 
 
