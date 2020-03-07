@@ -3,7 +3,7 @@ import os
 from PIL import Image
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
-
+import open3d 
 #converting images from RGB to grayscale
 img1 = Image.open("E1.jpg").convert('L') 
 img2 = Image.open("E2.jpg").convert('L')
@@ -52,13 +52,33 @@ for i in range(img1.size[0]):
 #     for j in range(100):
 #         print(ma2[i,j])
 
-#plotting the merged projections
-fig = plt.figure()
-ax = fig.gca(projection='3d')
+#plotting the merged projections using matplot lib
 
-ax.voxels(ma, edgecolor="k")
+# fig = plt.figure()
+# ax = fig.gca(projection='3d')
 
-plt.show()
+# ax.voxels(ma, edgecolor="k")
+
+# plt.show()
+
+#creating an empty list and populating it with points from numpy array
+l=[]
+
+for i in range(100):
+    for j in range(100):
+        for k in range(100):
+            if ma[i,j,k]==255:
+                l.append([i,j,k])
+
+#converting list to np array 
+j=np.asarray(l)
+# print(j.shape)
+
+#plotting np array using open3d
+points = np.random.rand(10000, 3)
+point_cloud = open3d.geometry.PointCloud()
+point_cloud.points = open3d.utility.Vector3dVector(j)
+open3d.visualization.draw_geometries([point_cloud])
 
 
         
